@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Excluir Estratégia</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+
+        .navbar {
+            background-color: #4a90e2;
+        }
+
+        .confirm-card {
+            max-width: 700px;
+            margin: 60px auto;
+            border: none;
+            border-radius: 16px;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-dark mb-4">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="/">Portal Escola TEA</a>
+            <div class="navbar-nav ms-auto flex-row gap-3 align-items-center">
+                <a class="nav-link" href="/">Início</a>
+                <a class="nav-link" href="{% url 'lista_estrategias' %}">Biblioteca</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="card confirm-card shadow-sm">
+            <div class="card-body p-4 p-md-5">
+                <h2 class="text-danger mb-3">Excluir estratégia</h2>
+                <p class="mb-2">
+                    Você tem certeza que deseja excluir a estratégia:
+                </p>
+                <h4 class="fw-bold mb-4">"{{ item.titulo }}"</h4>
+
+                <p class="text-muted">
+                    Esta ação não poderá ser desfeita.
+                </p>
+
+                <form method="post" class="mt-4 d-flex flex-wrap gap-2">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-danger px-4">
+                        Sim, excluir
+                    </button>
+                    <a href="{% url 'detalhe_estrategia' item.pk %}" class="btn btn-outline-secondary px-4">
+                        Cancelar
+                    </a>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

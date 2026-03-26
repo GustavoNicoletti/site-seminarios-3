@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nova Estratégia - Portal Escola TEA</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+
+        .navbar {
+            background-color: #4a90e2;
+        }
+
+        .form-card {
+            border: none;
+            border-radius: 16px;
+        }
+
+        .page-header {
+            background: linear-gradient(135deg, #4a90e2 0%, #357abd 100%);
+            color: white;
+            border-radius: 16px;
+            padding: 32px;
+            margin-bottom: 24px;
+        }
+
+        .form-label {
+            font-weight: 600;
+            color: #344054;
+        }
+
+        textarea.form-control,
+        input.form-control {
+            border-radius: 10px;
+        }
+
+        .actions {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-dark mb-4">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="/">Portal Escola TEA</a>
+            <div class="navbar-nav ms-auto flex-row gap-3 align-items-center">
+                <a class="nav-link" href="/">Início</a>
+                <a class="nav-link" href="{% url 'lista_estrategias' %}">Biblioteca</a>
+                <a class="nav-link" href="/guia/">Guia</a>
+                <a class="nav-link" href="/alunos/">Alunos</a>
+                <form action="/accounts/logout/" method="post" style="display:inline;">
+                    {% csrf_token %}
+                    <button type="submit" class="nav-link p-0 text-danger border-0 bg-transparent">Sair</button>
+                </form>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mb-5">
+        <div class="page-header shadow-sm">
+            <h1 class="h2 mb-2">Cadastrar nova estratégia</h1>
+            <p class="mb-0 opacity-75">
+                Registre uma estratégia pedagógica para consulta da equipe.
+            </p>
+        </div>
+
+        <div class="card form-card shadow-sm">
+            <div class="card-body p-4 p-md-5">
+                <form method="post">
+                    {% csrf_token %}
+
+                    <div class="mb-3">
+                        <label for="{{ form.titulo.id_for_label }}" class="form-label">Título</label>
+                        {{ form.titulo }}
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="{{ form.descricao.id_for_label }}" class="form-label">Descrição</label>
+                        {{ form.descricao }}
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="{{ form.publico_alvo.id_for_label }}" class="form-label">Público-alvo</label>
+                        {{ form.publico_alvo }}
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="{{ form.objetivo.id_for_label }}" class="form-label">Objetivo</label>
+                        {{ form.objetivo }}
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="{{ form.passo_a_passo.id_for_label }}" class="form-label">Passo a passo</label>
+                        {{ form.passo_a_passo }}
+                    </div>
+
+                    <div class="mb-4">
+                        <label for="{{ form.materiais.id_for_label }}" class="form-label">Materiais</label>
+                        {{ form.materiais }}
+                    </div>
+
+                    <div class="actions">
+                        <button type="submit" class="btn btn-success px-4">
+                            Salvar estratégia
+                        </button>
+                        <a href="{% url 'lista_estrategias' %}" class="btn btn-outline-secondary px-4">
+                            Cancelar
+                        </a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
