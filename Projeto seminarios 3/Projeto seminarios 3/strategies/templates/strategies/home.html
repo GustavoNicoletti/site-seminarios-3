@@ -34,6 +34,21 @@
         .hero-section { padding: 50px 0 30px 0; text-align: center; }
         .hero-title { font-size: 2.2rem; font-weight: 700; color: #1f3c5a; }
 
+        /* NOVO: Estilo do Comunicado Interno */
+        .comunicado-section {
+            margin: 30px 0 40px 0;
+        }
+        .comunicado-banner {
+            background: linear-gradient(135deg, #fff3cd 0%, #ffeaa7 100%);
+            border: 2px solid #ffc107;
+            border-radius: 16px;
+            padding: 24px;
+            box-shadow: 0 8px 25px rgba(255, 193, 7, 0.15);
+        }
+        .comunicado-icon { font-size: 1.5rem; color: #856404; }
+        .comunicado-title { font-weight: 700; color: #856404; margin-bottom: 12px; }
+        .comunicado-text { color: #665d03; line-height: 1.6; }
+
         .portal-card {
             border: none;
             border-radius: 22px;
@@ -116,6 +131,28 @@
             <p class="text-muted">Bem-vinda, <strong>{{ user.username }}</strong>! Seu ambiente de trabalho especializado.</p>
         </section>
 
+        <!-- NOVO: Seção de Comunicado Interno -->
+        <section class="comunicado-section">
+            <div class="row justify-content-center">
+                <div class="col-lg-10">
+                    <div class="comunicado-banner">
+                        <div class="row align-items-center">
+                            <div class="col-auto">
+                                <div class="comunicado-icon">📢</div>
+                            </div>
+                            <div class="col">
+                                <h5 class="comunicado-title mb-0">Comunicado Interno</h5>
+                                <p class="comunicado-text mb-0">
+                                    {{ comunicado|default:"Aqui vai o comunicado do dia. Ex: Reunião pedagógica amanhã às 14h. Acesse o link para agenda. <a href='#'>Ver detalhes</a>" }}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Cards Principais (mantidos iguais) -->
         <section class="row justify-content-center g-4 mb-5">
             <div class="col-md-4">
                 <a href="{% url 'lista_alunos' %}" class="portal-card shadow-sm">
@@ -146,6 +183,7 @@
             </div>
         </section>
 
+        <!-- Links de Apoio (mantidos iguais) -->
         <section class="support-section">
             <div class="row justify-content-center">
                 <div class="col-lg-10">
@@ -154,22 +192,11 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <p class="small fw-bold text-uppercase text-muted mb-3">Playlists e Vídeos</p>
-                                
-                                <!-- ALTERE O LINK ABAIXO -->
-                                <a href="https://youtube.com/playlist?list=PLNHN4MTh-dtW5KxW3RyYiNA3-adiMK_MR&si=C7aHUFG6MVabwcBR" target="_blank" class="support-link">
+                                <a href="COLOQUE_O_LINK_DA_SUA_PLAYLIST_AQUI" target="_blank" class="support-link">
                                     <span class="link-icon">🎬</span>
                                     <div class="link-info">
                                         <span class="link-name">Treinamento TEA</span>
                                         <span class="link-desc">Playlist completa de capacitação.</span>
-                                    </div>
-                                    <span class="ms-auto opacity-50">→</span>
-                                </a>
-
-                                <a href="https://youtu.be/A-O4zt6CtdU?si=UrD6QAkBaOOcJ4U3" class="support-link">
-                                    <span class="link-icon">🎥</span>
-                                    <div class="link-info">
-                                        <span class="link-name">Manejo de Crises</span>
-                                        <span class="link-desc">Vídeo explicativo sobre regulação.</span>
                                     </div>
                                     <span class="ms-auto opacity-50">→</span>
                                 </a>

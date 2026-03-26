@@ -10,3 +10,9 @@ class AlunoAdmin(admin.ModelAdmin):
 class VideoAdmin(admin.ModelAdmin):
     list_display = ('titulo', 'categoria', 'data_criacao')
     list_filter = ('categoria',)
+
+@admin.register(Comunicado)
+class ComunicadoAdmin(admin.ModelAdmin):
+    list_display = ('titulo', 'data_inicio', 'data_fim', 'ativo', 'is_ativo')
+    list_filter = ('ativo', 'data_inicio')
+    list_editable = ('ativo',)

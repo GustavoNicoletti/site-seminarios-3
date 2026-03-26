@@ -26,3 +26,19 @@ class VideoComplementar(models.Model):
 
     def __str__(self):
         return f"{self.titulo} - {self.get_categoria_display()}"
+    
+class Comunicado(models.Model):
+    titulo = models.CharField(max_length=200)
+    texto = models.TextField()
+    data_inicio = models.DateTimeField()
+    data_fim = models.DateTimeField()
+    ativo = models.BooleanField(default=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.titulo
+
+    def is_ativo(self):
+        from django.utils import timezone
+        agora = timezone.now()
+        return self.ativo and self.data_inicio <= agora <= self.data_fim

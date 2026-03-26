@@ -45,3 +45,32 @@ def editar_aluno(request, pk):
 def detalhe_aluno(request, pk):
     aluno = get_object_or_404(Aluno, pk=pk)
     return render(request, 'students/detalhe_aluno.html', {'aluno': aluno})
+    
+@login_required
+def home(request):
+    # Pegar comunicado ATIVO (dentro da data)
+    agora = timezone.now()
+    comunicado_ativo = Comunicado.objects.filter(
+        ativo=True,
+        data_inicio__lte=agora,
+        data_fim__gte=agora
+    ).first()  # Pega o primeiro ativo
+
+    # Lógica para cadastrar vídeo
+    if request.method == "POST":
+        form = VideoForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('home')
+    else:
+        form = VideoForm()
+
+    videos = VideoComplementar.objects.all().order_by('-data_criacao')
+
+    context = {
+        'form': form,
+        'videos': videos,
+        'comunicado': comunicado_ativo.texto if comunicado_ativo else None,
+        'comunicado_titulo': comunicado_ativo.titulo if comunicado_ativo else None,
+    }
+    return render(request, 'home.html', context)
